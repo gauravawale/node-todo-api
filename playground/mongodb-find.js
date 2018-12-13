@@ -7,21 +7,21 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (error, client) => {
 
     const db = client.db('TodoApp');
 
-    // db.collection('Users').find({name: 'Gaurav'}).toArray().then((docs) => {
-    //     console.log('Todos');
-    //     console.log(JSON.stringify(docs, undefined, 2));
-    //
-    // }, (err) => {
-    //     console.log(`unable to fetch Todos ${err}`);
-    // });
-
-    db.collection('Users').find({name: 'Gaurav'}).count().then((count) => {
+    db.collection('Users').find({name: 'Gaurav'}).toArray().then((docs) => {
         console.log('Todos');
-        console.log(count);
+        console.log(JSON.stringify(docs, undefined, 2));
 
     }, (err) => {
         console.log(`unable to fetch Todos ${err}`);
     });
+
+    // db.collection('Users').find({name: 'Gaurav'}).count().then((count) => {
+    //     console.log('Todos');
+    //     console.log(count);
+    //
+    // }, (err) => {
+    //     console.log(`unable to fetch Todos ${err}`);
+    // });
     //client.close();
 
 });

@@ -1,5 +1,5 @@
 let mongoose = require('mongoose');
-let User = mongoose.model('User', {
+let Users = mongoose.model('Users', {
     email: {
         type: String,
         required: true,
@@ -9,4 +9,4 @@ let User = mongoose.model('User', {
 
 });
 
-module.exports = {User};
+module.exports = {Users};

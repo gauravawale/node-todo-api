@@ -36,7 +36,6 @@ app.get('/todos', (req, res) => {
    }) ;
 });
 
-
 app.get('/todos/:id', (req, res) => {
     let id = req.params.id;
     if (!ObjectID.isValid(id))
@@ -105,6 +104,18 @@ app.post('/users', (req, res) => {
 
 app.get('/users/me', authenticate, (req, res) => {
     res.send(req.user);
+});
+
+app.post('/users/login', (req, res) => {
+    let body = _.pick(req.body, ['email', 'password']);
+
+    Users.findByCredentials(body.email, body.password).then((user) => {
+        user.generateAuthToken().then(token => {
+            res.header('x-auth', token).send(user);
+        });
+    }).catch(err => {
+        res.status(400).send(err);
+    });
 });
 
 
